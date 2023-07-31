@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import { useRef, useState } from 'react';
 import axios from "axios";
 import PromptInput from "../PromptInput/PromptInput";
 import './App.css';
-import {ResponseInterface} from "../PromptResponseList/response-interface";
+import { ResponseInterface } from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
 
 type ModelValueType = 'gpt' | 'codex' | 'image';
@@ -15,6 +15,10 @@ const App = () => {
   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
   const [isLoading, setIsLoading] = useState(false);
   let loadInterval: number | undefined;
+
+  const [isShow, setIsShow] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
+  const inputRef: any = useRef();
 
   const generateUniqueId = () => {
     const timestamp = Date.now();
@@ -31,7 +35,7 @@ const App = () => {
   }
 
   const delay = (ms: number) => {
-    return new Promise( resolve => setTimeout(resolve, ms) );
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   const addLoader = (uid: string) => {
@@ -141,37 +145,85 @@ const App = () => {
     }
   }
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const { value } = inputRef.current;
+    if (value) {
+      setIsShow(true);
+
+
+      setIsLoading2(true);
+      setTimeout(() => {
+        setIsLoading2(false);
+      }, 500)
+    }
+  }
+
+  const handleClickHome = () => {
+    setIsShow(false);
+  }
+
   return (
     <div className="App">
-      <div id="response-list">
-        <PromptResponseList responseList={responseList} key="response-list"/>
-      </div>
-      { uniqueIdToRetry &&
-        (<div id="regenerate-button-container">
-          <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={() => regenerateResponse()}>
-            Regenerate Response
-          </button>
-        </div>
-        )
+      {
+        isLoading2 ? <>
+          <div className="overlay">
+            <div className="overlay__inner">
+              <div className="overlay__content"><span className="spinner"></span></div>
+            </div>
+          </div>
+        </> :
+          isShow ?
+            <>
+              <div id="response-list">
+                <PromptResponseList responseList={responseList} key="response-list" />
+              </div>
+              {uniqueIdToRetry &&
+                (<div id="regenerate-button-container">
+                  <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={() => regenerateResponse()}>
+                    Regenerate Response
+                  </button>
+                  <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={handleClickHome} style={{marginLeft: '8px'}}>
+                    Home
+                  </button>
+                </div>
+                )
+              }
+              <div id="model-select-container">
+                <label htmlFor="model-select">Select model:</label>
+                <select id="model-select" value={modelValue} onChange={(event) => setModelValue(event.target.value as ModelValueType)}>
+                  <option value="gpt">GPT-3 (Understand and generate natural language )</option>
+                  <option value="codex">Codex (Understand and generate code, including translating natural language to code)
+                  </option>
+                  <option value="image">Create Image (Create AI image using DALL·E models)</option>
+                </select>
+              </div>
+              <div id="input-container">
+                <PromptInput
+                  prompt={prompt}
+                  onSubmit={() => getGPTResult()}
+                  key="prompt-input"
+                  updatePrompt={(prompt) => setPrompt(prompt)}
+                />
+                <button id="submit-button" className={isLoading ? 'loading' : ''} onClick={() => getGPTResult()}></button>
+              </div>
+            </> : <>
+              <div className='wapper'>
+                <form onSubmit={handleSubmit}>
+
+                  <div>
+                    <label className='title'>Pornhub</label>
+                    <input ref={inputRef} type="text" name='url' placeholder="Please enter URL" className='inputUrl' />
+                  </div>
+
+                  <button
+                    type='submit' className='btn'>Phan tich</button>
+                </form>
+              </div>
+            </>
       }
-      <div id="model-select-container">
-        <label htmlFor="model-select">Select model:</label>
-        <select id="model-select" value={modelValue} onChange={(event) => setModelValue(event.target.value as ModelValueType)}>
-          <option value="gpt">GPT-3 (Understand and generate natural language )</option>
-          <option value="codex">Codex (Understand and generate code, including translating natural language to code)
-          </option>
-          <option value="image">Create Image (Create AI image using DALL·E models)</option>
-        </select>
-      </div>
-      <div id="input-container">
-        <PromptInput
-          prompt={prompt}
-          onSubmit={() => getGPTResult()}
-          key="prompt-input"
-          updatePrompt={(prompt) => setPrompt(prompt)}
-        />
-        <button id="submit-button" className={isLoading ? 'loading' : ''} onClick={() => getGPTResult()}></button>
-      </div>
+
     </div>
   );
 }
