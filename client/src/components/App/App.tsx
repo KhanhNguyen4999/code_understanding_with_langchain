@@ -94,11 +94,11 @@ const App = () => {
 
   // Function to set the access token in sessionStorage
   const setAccessToken = (token: string) => {
-    localStorage.setItem('access_token', token);
+    sessionStorage.setItem('access_token', token);
   };
 
   const getAccessToken = () => {
-    return localStorage.getItem('access_token');
+    return sessionStorage.getItem('access_token');
   };
 
   const getGPTResult = async (_promptToRetry?: string | null, _uniqueIdToRetry?: string | null) => {
@@ -129,8 +129,7 @@ const App = () => {
     try {
       // Send a POST request to the API with the prompt in the request body
       let sessionId = getAccessToken();
-      console.log("get session id: " +  sessionId)
-      console.log("prompt: " + _prompt)
+      
       const response = await axios.post(endpointChatGPT, {
         question: _prompt,
         idSession: sessionId
@@ -167,8 +166,6 @@ const App = () => {
 
       setIsLoading2(true);
 
-      console.log("Hello " + value);
-
       // Send a POST request to the API with the prompt in the request body
       let sessionId = uuidv4()
 
@@ -190,7 +187,6 @@ const App = () => {
         }, 500)
 
         setAccessToken(sessionId);
-        console.log(sessionId);
       })
       
     }
