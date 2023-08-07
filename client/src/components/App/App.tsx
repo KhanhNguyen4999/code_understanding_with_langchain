@@ -4,6 +4,7 @@ import PromptInput from "../PromptInput/PromptInput";
 import './App.css';
 import { ResponseInterface } from "../PromptResponseList/response-interface";
 import PromptResponseList from "../PromptResponseList/PromptResponseList";
+import { v4 as uuidv4 } from 'uuid';
 
 type ModelValueType = 'gpt' | 'codex' | 'image';
 const App = () => {
@@ -14,11 +15,16 @@ const App = () => {
   const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
   const [isLoading, setIsLoading] = useState(false);
+  const [responseSubmit, setResponseSubmit] = useState(false);
+
   let loadInterval: number | undefined;
 
   const [isShow, setIsShow] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const inputRef: any = useRef();
+  const endpointChatGPT = "https://stickerai.azure-api.net/chat";
+  const endpointSubmitUrl = "https://stickerai.azure-api.net/load";
+
 
   const generateUniqueId = () => {
     const timestamp = Date.now();
@@ -86,6 +92,15 @@ const App = () => {
     await getGPTResult(promptToRetry, uniqueIdToRetry);
   }
 
+  // Function to set the access token in sessionStorage
+  const setAccessToken = (token: string) => {
+    localStorage.setItem('access_token', token);
+  };
+
+  const getAccessToken = () => {
+    return localStorage.getItem('access_token');
+  };
+
   const getGPTResult = async (_promptToRetry?: string | null, _uniqueIdToRetry?: string | null) => {
     // Get the prompt input
     const _prompt = _promptToRetry ?? htmlToText(prompt);
@@ -113,20 +128,18 @@ const App = () => {
 
     try {
       // Send a POST request to the API with the prompt in the request body
-      const response = await axios.post('get-prompt-result', {
-        prompt: _prompt,
-        model: modelValue
+      let sessionId = getAccessToken();
+      console.log("get session id: " +  sessionId)
+      console.log("prompt: " + _prompt)
+      const response = await axios.post(endpointChatGPT, {
+        question: _prompt,
+        idSession: sessionId
       });
-      if (modelValue === 'image') {
-        // Show image for `Create image` model
-        updateResponse(uniqueId, {
-          image: response.data,
-        });
-      } else {
-        updateResponse(uniqueId, {
-          response: response.data.trim(),
-        });
-      }
+
+      console.log("Response: ", response)
+      updateResponse(uniqueId, {
+        response: response.data.Answer.trim(),
+      });
 
       setPromptToRetry(null);
       setUniqueIdToRetry(null);
@@ -152,11 +165,34 @@ const App = () => {
     if (value) {
       setIsShow(true);
 
-
       setIsLoading2(true);
-      setTimeout(() => {
-        setIsLoading2(false);
-      }, 500)
+
+      console.log("Hello " + value);
+
+      // Send a POST request to the API with the prompt in the request body
+      let sessionId = uuidv4()
+
+      const response = axios.post(endpointSubmitUrl, {
+        gitUrl: value,
+        idSession: sessionId
+      }).then(function (response) {
+        // 
+        // setResponseSubmit(true)
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(()=>{
+        // if responseSubmit:
+        // setIsLoading2(false)
+        setTimeout(() => {
+          setIsLoading2(false);
+        }, 500)
+
+        setAccessToken(sessionId);
+        console.log(sessionId);
+      })
+      
     }
   }
 
@@ -190,7 +226,7 @@ const App = () => {
                 </div>
                 )
               }
-              <div id="model-select-container">
+              {/* <div id="model-select-container">
                 <label htmlFor="model-select">Select model:</label>
                 <select id="model-select" value={modelValue} onChange={(event) => setModelValue(event.target.value as ModelValueType)}>
                   <option value="gpt">GPT-3 (Understand and generate natural language )</option>
@@ -198,7 +234,7 @@ const App = () => {
                   </option>
                   <option value="image">Create Image (Create AI image using DALL·E models)</option>
                 </select>
-              </div>
+              </div> */}
               <div id="input-container">
                 <PromptInput
                   prompt={prompt}
