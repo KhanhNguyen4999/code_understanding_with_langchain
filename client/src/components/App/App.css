@@ -138,8 +138,8 @@ body {
 #regenerate-button-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
+  justify-content: space-between;
+  margin: 10px 200px;
 }
 
 #regenerate-response-button {

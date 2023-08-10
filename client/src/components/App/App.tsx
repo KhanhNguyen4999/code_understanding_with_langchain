@@ -212,11 +212,11 @@ const App = () => {
               </div>
               {uniqueIdToRetry &&
                 (<div id="regenerate-button-container">
-                  {/* <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={() => regenerateResponse()}>
-                    Regenerate Response
-                  </button> */}
                   <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={handleClickHome} style={{marginLeft: '8px'}}>
                     Home
+                  </button>
+                  <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={() => regenerateResponse()}>
+                    Regenerate Response
                   </button>
                 </div>
                 )
