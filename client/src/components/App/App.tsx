@@ -12,7 +12,7 @@ const App = () => {
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
   const [prompt, setPrompt] = useState<string>('');
   const [promptToRetry, setPromptToRetry] = useState<string | null>(null);
-  const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>(null);
+  const [uniqueIdToRetry, setUniqueIdToRetry] = useState<string | null>("hello");
   const [modelValue, setModelValue] = useState<ModelValueType>('gpt');
   const [isLoading, setIsLoading] = useState(false);
   const [responseSubmit, setResponseSubmit] = useState(false);
@@ -141,7 +141,7 @@ const App = () => {
       });
 
       setPromptToRetry(null);
-      setUniqueIdToRetry(null);
+      // setUniqueIdToRetry("");
     } catch (err) {
       setPromptToRetry(_prompt);
       setUniqueIdToRetry(uniqueId);
@@ -180,8 +180,7 @@ const App = () => {
         console.log(error);
       })
       .finally(()=>{
-        // if responseSubmit:
-        // setIsLoading2(false)
+
         setTimeout(() => {
           setIsLoading2(false);
         }, 500)
@@ -213,9 +212,9 @@ const App = () => {
               </div>
               {uniqueIdToRetry &&
                 (<div id="regenerate-button-container">
-                  <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={() => regenerateResponse()}>
+                  {/* <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={() => regenerateResponse()}>
                     Regenerate Response
-                  </button>
+                  </button> */}
                   <button id="regenerate-response-button" className={isLoading ? 'loading' : ''} onClick={handleClickHome} style={{marginLeft: '8px'}}>
                     Home
                   </button>
@@ -245,12 +244,12 @@ const App = () => {
                 <form onSubmit={handleSubmit}>
 
                   <div>
-                    <label className='title'>Pornhub</label>
+                    <label className='title'>CODE UNDERSTANDING</label>
                     <input ref={inputRef} type="text" name='url' placeholder="Please enter URL" className='inputUrl' />
                   </div>
 
                   <button
-                    type='submit' className='btn'>Phan tich</button>
+                    type='submit' className='btn'>Phân tích</button>
                 </form>
               </div>
             </>
