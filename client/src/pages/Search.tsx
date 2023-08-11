@@ -45,14 +45,13 @@ const Search = () => {
     if (value) {
       try {
         setIsLoading(true);
-        const sessionId = uuidv4();
+        const sessionId = sessionStorage.getItem(access_token);
 
         // Send a POST request to the API with the prompt in the request body
         await axios.post(endpointSubmitUrl, {
           gitUrl: value,
           idSession: sessionId,
         });
-        sessionStorage.setItem("access_token", sessionId);
 
         navigate("/home");
       } catch (error) {

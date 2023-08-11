@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../components/App/App.css";
 import PromptInput from "../components/PromptInput/PromptInput";
 import PromptResponseList from "../components/PromptResponseList/PromptResponseList";
 import { ResponseInterface } from "../components/PromptResponseList/response-interface";
 import { endpointChatGPT } from "../untils/APIRoutes";
-import "../components/App/App.css";
-import { access_token, sessionId } from "./Login";
+import { access_token } from "./Login";
 // import { useAppSelector } from "../hooks/useHooks";
 // import { addResponses } from "../store/homeSlice";
 // import { unwrapResult } from "@reduxjs/toolkit";
@@ -16,10 +16,7 @@ const Home = () => {
   // const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (
-      !sessionStorage.getItem(access_token) &&
-      !sessionStorage.getItem(sessionId)
-    ) {
+    if (!sessionStorage.getItem(access_token)) {
       navigate("/");
     }
   }, [navigate]);
@@ -32,12 +29,8 @@ const Home = () => {
   );
   const [isLoading, setIsLoading] = useState(false);
 
-  // const dataResponse = useAppSelector((state) => state.home.listResponse);
-
-  // console.log("responseList", responseList);
-
-  const responses: any = sessionStorage.getItem("listResponse");
-  const res = JSON.parse(responses);
+  // const responses: any = sessionStorage.getItem("listResponse");
+  // const res = JSON.parse(responses);
   // console.log("res", res);
 
   let loadInterval: number | undefined;

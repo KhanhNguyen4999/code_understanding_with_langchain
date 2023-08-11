@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID || "";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +18,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <GoogleOAuthProvider clientId="632365002228-3rbvav73ls3i13cpc0mh3sd6obbveh92.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={CLIENT_ID}>
           <App />
         </GoogleOAuthProvider>
       </Provider>
