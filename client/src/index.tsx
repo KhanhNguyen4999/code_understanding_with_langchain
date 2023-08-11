@@ -5,6 +5,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
 
@@ -14,9 +16,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GoogleOAuthProvider clientId="632365002228-3rbvav73ls3i13cpc0mh3sd6obbveh92.apps.googleusercontent.com">
-        <App />
-      </GoogleOAuthProvider>
+      <Provider store={store}>
+        <GoogleOAuthProvider clientId="632365002228-3rbvav73ls3i13cpc0mh3sd6obbveh92.apps.googleusercontent.com">
+          <App />
+        </GoogleOAuthProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -15,7 +15,7 @@ const Search = () => {
 
   useEffect(() => {
     if (!sessionStorage.getItem(access_token)) {
-      navigate("/login");
+      navigate("/");
     }
   }, [navigate]);
 
@@ -62,7 +62,6 @@ const Search = () => {
         <Loading />
       ) : (
         <Container>
-          <h1>{user?.name}</h1>
           <form onSubmit={handleSubmit}>
             <div className="wrapper">
               <label className="title">CODE UNDERSTANDING</label>

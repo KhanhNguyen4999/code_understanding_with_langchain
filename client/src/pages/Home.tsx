@@ -7,9 +7,13 @@ import { ResponseInterface } from "../components/PromptResponseList/response-int
 import { endpointChatGPT } from "../untils/APIRoutes";
 import "../components/App/App.css";
 import { access_token, sessionId } from "./Login";
+// import { useAppSelector } from "../hooks/useHooks";
+// import { addResponses } from "../store/homeSlice";
+// import { unwrapResult } from "@reduxjs/toolkit";
 
 const Home = () => {
   const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (
@@ -28,7 +32,13 @@ const Home = () => {
   );
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log("prompt", prompt);
+  // const dataResponse = useAppSelector((state) => state.home.listResponse);
+
+  // console.log("responseList", responseList);
+
+  const responses: any = sessionStorage.getItem("listResponse");
+  const res = JSON.parse(responses);
+  // console.log("res", res);
 
   let loadInterval: number | undefined;
 
@@ -92,6 +102,8 @@ const Home = () => {
           ...updatedObject,
         };
       }
+
+      sessionStorage.setItem("listResponse", JSON.stringify(updatedList));
       return updatedList;
     });
   };
@@ -118,7 +130,6 @@ const Home = () => {
 
     setIsLoading(true);
 
-    console.log("in");
     // Clear the prompt input
     setPrompt("");
 
@@ -142,7 +153,6 @@ const Home = () => {
         idSession: sessionId,
       });
 
-      console.log("Response: ", response);
       updateResponse(uniqueId, {
         response: response.data.Answer.trim(),
       });
