@@ -1,96 +1,18 @@
-.wapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  margin: auto;
-  width: 100%;
-  height: 100vh;
-}
-
-.title {
-  font-size: 40px;
-  color: red;
-  font-weight: bold;
-
-  margin: 0 12px 12px 0;
-}
-
-.inputUrl {
-  height: 40px;
-  width: 400px;
-}
-
-.btn {
-  display: flex;
-  margin: 16px auto;
-  padding: 12px 16px;
-  font-size: 24px;
-  color: #ffff;
-  background: green;
-  border: none;
-  border-radius: 8px;
-}
-
-/* css loading */
-
-.overlay {
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: #222;
-  opacity: 0.8;
-}
-
-.overlay__inner {
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.overlay__content {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.spinner {
-  width: 75px;
-  height: 75px;
-  display: inline-block;
-  border-width: 2px;
-  border-color: rgba(255, 255, 255, 0.05);
-  border-top-color: #fff;
-  animation: spin 1s infinite linear;
-  border-radius: 100%;
-  border-style: solid;
-}
-
-@keyframes spin {
-100% {
-  transform: rotate(360deg);
-}
-}
-
-
-/*  */
-
-
-html, body, #root, .App {
+html,
+body,
+#root,
+.App {
   height: 100%;
 }
 .App {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 /* Add background color to the body */
 body {
-  background-color: rgba(68, 70, 84, 1.0);
+  background-color: rgba(68, 70, 84, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -118,15 +40,16 @@ body {
   justify-content: space-between;
   padding: 10px;
   background-color: rgba(64, 65, 79, 1);
-  border-color: rgba(32,33,35,.5);
+  border-color: rgba(32, 33, 35, 0.5);
   border-radius: 5px;
   margin: 10px 200px;
 }
 
-
 /* Remove background color and add an SVG background for the submit button */
 #submit-button {
-  background: transparent url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='white' d='M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'/></svg>") no-repeat center center;
+  background: transparent
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='white' d='M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'/></svg>")
+    no-repeat center center;
   color: white;
   width: 40px;
   height: 40px;
@@ -145,7 +68,7 @@ body {
 #regenerate-response-button {
   color: white;
   border: none;
-  background: #10A37F;
+  background: #10a37f;
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
@@ -170,9 +93,9 @@ body {
 }
 
 #model-select-container select option:not(:checked) {
-  background: rgba(32,33,35,.8);
+  background: rgba(32, 33, 35, 0.8);
 }
 
 #model-select-container select option {
-  background: rgba(32,33,35,.5);
+  background: rgba(32, 33, 35, 0.5);
 }
