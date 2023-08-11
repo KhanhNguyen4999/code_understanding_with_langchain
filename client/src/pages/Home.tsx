@@ -135,6 +135,7 @@ const Home = () => {
       uniqueId = addResponse(false);
       await delay(50);
       addLoader(uniqueId);
+      setUniqueIdToRetry(uniqueId)
     }
 
     try {

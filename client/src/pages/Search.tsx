@@ -56,7 +56,7 @@ const Search = () => {
         navigate("/home");
       } catch (error) {
         console.log("error", error);
-        toast.error("Please enter link github", toastOptions);
+        toast.error("Invalid GIT url", toastOptions);
       }
       setIsLoading(false);
     }
@@ -77,13 +77,13 @@ const Search = () => {
             <form onSubmit={handleSubmit}>
               <div className="brand">
                 <img src={Logo} alt="Logo" />
-                <h1>Search</h1>
+                <h1>Code Understanding</h1>
               </div>
               <input
                 ref={inputRef}
                 type="text"
                 name="url"
-                placeholder="Please enter URL"
+                placeholder="Please enter GIT URL"
                 className="inputUrl"
               />
               <button type="submit">Submit</button>
