@@ -17,6 +17,11 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.chains import RetrievalQA
 from langchain import PromptTemplate
 from langchain.callbacks import StdOutCallbackHandler
+from dotenv import load_dotenv
+
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Khởi tạo embeddings với các tham số cần thiết
 embeddings = OpenAIEmbeddings(
