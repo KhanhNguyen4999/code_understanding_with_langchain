@@ -1,4 +1,3 @@
-numpy
 langchain
 deeplake
 openai

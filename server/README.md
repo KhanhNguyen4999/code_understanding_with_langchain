@@ -57,29 +57,37 @@ This guide will walk you through setting up a Python/Conda virtual environment, 
 
    Make sure you are in the project root directory where the `requirements.txt` file is located.
 
-4. Start the backend server with your `OPENAI_API_KEY`, `OPENAI_API_BASE`, `ACTIVELOOP_TOKEN` for the corresponding `Embedding`, `GPT` models and `DeepLake` account:
+4. Create .env file to store enviroment variable, start the backend server with your `OPENAI_API_KEY`, `OPENAI_API_BASE`, `ACTIVELOOP_TOKEN` for the corresponding `Embedding`, `GPT` models and `DeepLake` account:
 
-   ```bash
-   python3 code.py
-   ```
+```sh
+ACTIVELOOP_TOKEN=xxxx
+OPENAI_API_TYPE=xxxx # azure
+OPENAI_API_BASE=xxxx # https://genaiopenai.openai.azure.com/
+OPENAI_API_KEY=xxxx
+OPENAI_API_VERSION=xxxx # 2023-05-15
+```
 
-   This command will execute the `code.py` script, which will start the backend server. Make sure the script has the necessary server setup and listen to the specified port ("8080" in our demo). You can modify your own keys in `code.py`.
+5.  ```bash
+    python3 code.py
+    ```
 
-5. Access the backend:
+    This command will execute the `code.py` script, which will start the backend server. Make sure the script has the necessary server setup and listen to the specified port ("8080" in our demo). You can modify your own keys in `code.py`.
 
-   Once the server is running, you should be able to access the backend using the appropriate API endpoints or by visiting the server URL in your browser.
+6.  Access the backend:
 
-6. Deactivate the virtual environment:
+    Once the server is running, you should be able to access the backend using the appropriate API endpoints or by visiting the server URL in your browser.
 
-   When you're done using the virtual environment, you can deactivate it:
+7.  Deactivate the virtual environment:
 
-   ```bash
-   conda deactivate
-   ```
+    When you're done using the virtual environment, you can deactivate it:
+
+    ```bash
+    conda deactivate
+    ```
 
 If you encounter any issues or need further assistance, please don't hesitate to reach out our team.
 
-7. Build with docker
+8. Build with docker
 
 - docker build:
 

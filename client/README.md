@@ -25,12 +25,6 @@ npm start
 
 ## Build with docker
 
-### Frontend
-
-```sh
-cd client
-```
-
 - docker build:
 
 ```sh
