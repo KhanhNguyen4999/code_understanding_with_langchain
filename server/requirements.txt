@@ -5,4 +5,4 @@ tiktoken
 pydantic
 fastapi
 uvicorn
-dotenv
+python-dotenv

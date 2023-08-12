@@ -19,9 +19,12 @@ from langchain import PromptTemplate
 from langchain.callbacks import StdOutCallbackHandler
 from dotenv import load_dotenv
 
-
-# Load environment variables from .env file
-load_dotenv()
+# Thiết lập biến môi trường
+os.environ["ACTIVELOOP_TOKEN"] = "eyJhbGciOiJIUzUxMiIsImlhdCI6MTY5MTMwODQ2MSwiZXhwIjoxNjkzNDY4NDM5fQ.eyJpZCI6ImtoYWNkdXltYXRoIn0.-k4A51r-G2qPGi4SQaoS2-IEX1fsW6_DHXYFkG1D4m7sa1vFCAo4BZ85Hhv43JAdjy3JvBMDlNuZ8NFN3kWeLg"
+os.environ["OPENAI_API_TYPE"] = "azure"
+os.environ["OPENAI_API_BASE"] = "https://genaiopenai.openai.azure.com/"
+os.environ["OPENAI_API_KEY"] = "c19c42b0cd4b41eba73da41b1710d652"
+os.environ["OPENAI_API_VERSION"] = "2023-05-15"
 
 # Khởi tạo embeddings với các tham số cần thiết
 embeddings = OpenAIEmbeddings(
