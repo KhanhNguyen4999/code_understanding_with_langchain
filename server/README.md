@@ -78,3 +78,17 @@ This guide will walk you through setting up a Python/Conda virtual environment, 
    ```
 
 If you encounter any issues or need further assistance, please don't hesitate to reach out our team.
+
+7. Build with docker
+
+- docker build:
+
+```sh
+docker build -t flask-server .
+```
+
+- docker run:
+
+```sh
+docker run -p 8080:8080 flask-server
+```
