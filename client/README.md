@@ -1,5 +1,11 @@
 # Frontend Server
 
+Dependences (on ubuntu/mac follow this guide https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04):
+
+```
+npm version v9.6.7 or above
+```
+
 Run the following command to install the frontend dependencies:
 
 ```sh
