@@ -1,4 +1,4 @@
-# [Code Understanding Project] Backend Server
+# Backend Server
 
 This repository contains the code for the server, built using FastAPI, and it relies on a Python/Conda virtual environment to manage dependencies.
 
@@ -9,65 +9,75 @@ This repository contains the code for the server, built using FastAPI, and it re
 - Python 3.10
 - Conda (Anaconda distribution is recommended)
 
-
 # Backend Server Setup
 
 This guide will walk you through setting up a Python/Conda virtual environment, activating the environment, and starting the backend server using a Python3 script.
 
 ## Setup Instructions
 
-
 1. Create a Conda virtual environment for the project:
 
-    ```bash
-    conda create -n myenv python=3.10
-    ```
-    or
-    ```bash
-    python3 -m venv myenv
-    ```
+   ```bash
+   conda create -n myenv python=3.10
+   ```
+
+   or
+
+   ```bash
+   python3 -m venv myenv
+   ```
 
    Replace `myenv` with the desired environment name.
 
-3. Activate the virtual environment:
+2. Activate the virtual environment:
 
-    On macOS and Linux:
+   On macOS and Linux:
 
-    ```bash
-    conda activate myenv
-    ```
-    or
-    ```bash
-    source myenv/bin/activate
-    ```
+   ```bash
+   conda activate myenv
+   ```
 
-    On Windows:
+   or
 
-    ```bash
-    conda activate myenv
-    ```
+   ```bash
+   source myenv/bin/activate
+   ```
 
-4. Install the required packages:
+   On Windows:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   conda activate myenv
+   ```
+
+3. Install the required packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
    Make sure you are in the project root directory where the `requirements.txt` file is located.
 
-5. Start the backend server with your `OPENAI_API_KEY`, `OPENAI_API_BASE`, `ACTIVELOOP_TOKEN` for the corresponding `Embedding`, `GPT` models and `DeepLake` account:
+4. Create .env file to store enviroment variable, start the backend server with your `OPENAI_API_KEY`, `OPENAI_API_BASE`, `ACTIVELOOP_TOKEN` for the corresponding `Embedding`, `GPT` models and `DeepLake` account:
 
-    ```bash
+```sh
+ACTIVELOOP_TOKEN=xxxx
+OPENAI_API_TYPE=xxxx # azure
+OPENAI_API_BASE=xxxx # https://genaiopenai.openai.azure.com/
+OPENAI_API_KEY=xxxx
+OPENAI_API_VERSION=xxxx # 2023-05-15
+```
+
+5.  ```bash
     python3 code.py
     ```
 
-   This command will execute the `code.py` script, which will start the backend server. Make sure the script has the necessary server setup and listen to the specified port ("8080" in our demo). You can modify your own keys in `code.py`.
+    This command will execute the `code.py` script, which will start the backend server. Make sure the script has the necessary server setup and listen to the specified port ("8080" in our demo). You can modify your own keys in `code.py`.
 
-6. Access the backend:
+6.  Access the backend:
 
-   Once the server is running, you should be able to access the backend using the appropriate API endpoints or by visiting the server URL in your browser.
+    Once the server is running, you should be able to access the backend using the appropriate API endpoints or by visiting the server URL in your browser.
 
-7. Deactivate the virtual environment:
+7.  Deactivate the virtual environment:
 
     When you're done using the virtual environment, you can deactivate it:
 
@@ -76,3 +86,17 @@ This guide will walk you through setting up a Python/Conda virtual environment, 
     ```
 
 If you encounter any issues or need further assistance, please don't hesitate to reach out our team.
+
+8. Build with docker
+
+- docker build:
+
+```sh
+docker build -t flask-server .
+```
+
+- docker run:
+
+```sh
+docker run -p 8080:8080 flask-server
+```

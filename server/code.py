@@ -51,7 +51,7 @@ model = AzureChatOpenAI(
 CONDENSE_PROMPT_TEMPLATE = """You are a chatbot with the Code Understanding task, having a conversation with a human. Given the following conversation and a follow-up question, please rephrase the follow-up question to make it a standalone question in its original language.
 Chat History:
 
-{       }
+{chat_history}
 Follow Up Input: {question}
 Standalone question:"""
 
