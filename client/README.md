@@ -1,0 +1,34 @@
+# [Code Understanding Project] Frontend Server
+
+- Run the following command to install the frontend dependencies:
+```sh
+npm install
+```
+
+- Set the `REACT_APP_BACKEND_URL` in the `.env` file to the URL of your backend server. For local development, use the following URL:
+```sh
+REACT_APP_BACKEND_URL=http://localhost:3001/
+```
+
+- Start the frontend app by running the following command:
+```sh
+npm start
+```
+
+
+## Build with docker
+
+### Frontend
+
+```sh
+cd client
+```
+- docker build:
+```sh
+docker build -t my-react-app .
+```
+
+- docker run:
+```sh
+docker run -p 3000:3000 my-react-app
+```

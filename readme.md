@@ -20,50 +20,23 @@ This guide will help you set up the repository on your local machine. Please fol
 Use the following command to clone the repository:
 ```sh
 git clone https://github.com/KhanhNguyen4999/code_understanding_with_langchain
+
+cd code_understanding_with_langchain
 ```
 
 ### Backend Setup
 
-- To do
+- Navigate to the server folder and follow instruction:
+```sh
+cd server
+```
 
 ### Frontend Setup
-
-- Navigate to the client directory:
+- Navigate to the client folder and follow instruction:
 ```sh
 cd client
 ```
 
-- Run the following command to install the frontend dependencies:
-```sh
-npm install
-```
 
-- Set the `REACT_APP_BACKEND_URL` in the `.env` file to the URL of your backend server. For local development, use the following URL:
-```sh
-REACT_APP_BACKEND_URL=http://localhost:3001/
-```
-
-- Start the frontend app by running the following command:
-```sh
-npm start
-```
-
-
-## Build with docker
-
-### Frontend
-
-```sh
-cd client
-```
-- docker build:
-```sh
-docker build -t my-react-app .
-```
-
-- docker run:
-```sh
-docker run -p 3000:3000 my-react-app
-```
 
 
