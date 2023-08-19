@@ -16,11 +16,11 @@ const Home = () => {
   const navigate = useNavigate();
   // const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   if (!sessionStorage.getItem(access_token)) {
-  //     navigate("/");
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    if (!sessionStorage.getItem(access_token)) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
   const [prompt, setPrompt] = useState<string>("");
@@ -145,7 +145,7 @@ const Home = () => {
 
       const response = await axios.post(endpointChatGPT, {
         question: _prompt,
-        idSession: uuidv4(),
+        idSession: sessionId,
       });
 
       updateResponse(uniqueId, {

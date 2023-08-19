@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import jwt_decode from "jwt-decode";
+import { v4 as uuidv4 } from "uuid";
 
 export const info_user = "info_user";
 export const access_token = "access_token";
@@ -24,7 +25,14 @@ const Login = () => {
           <h2>Code UnderStand</h2>
         </div>
         <div className="btn_login">
-          <button onClick={() => navigate("/search")}>Login</button>
+          <button
+            onClick={() => {
+              sessionStorage.setItem(access_token, `${uuidv4()}`);
+              navigate("/search");
+            }}
+          >
+            Login
+          </button>
           {/* <GoogleLogin
             onSuccess={(credentialResponse) => {
               const credential: any = credentialResponse.credential;

@@ -24,11 +24,11 @@ const Search = () => {
     theme: "dark",
   };
 
-  // useEffect(() => {
-  //   if (!sessionStorage.getItem(access_token)) {
-  //     navigate("/");
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    if (!sessionStorage.getItem(access_token)) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   // useEffect(() => {
   //   const data: any = sessionStorage.getItem(info_user);
@@ -50,7 +50,7 @@ const Search = () => {
         // Send a POST request to the API with the prompt in the request body
         await axios.post(endpointSubmitUrl, {
           gitUrl: value,
-          idSession: uuidv4(),
+          idSession: sessionId,
         });
 
         navigate("/home");
