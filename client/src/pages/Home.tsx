@@ -7,6 +7,7 @@ import PromptResponseList from "../components/PromptResponseList/PromptResponseL
 import { ResponseInterface } from "../components/PromptResponseList/response-interface";
 import { endpointChatGPT } from "../untils/APIRoutes";
 import { access_token } from "./Login";
+import { v4 as uuidv4 } from "uuid";
 // import { useAppSelector } from "../hooks/useHooks";
 // import { addResponses } from "../store/homeSlice";
 // import { unwrapResult } from "@reduxjs/toolkit";
@@ -135,7 +136,7 @@ const Home = () => {
       uniqueId = addResponse(false);
       await delay(50);
       addLoader(uniqueId);
-      setUniqueIdToRetry(uniqueId)
+      setUniqueIdToRetry(uniqueId);
     }
 
     try {
@@ -144,7 +145,7 @@ const Home = () => {
 
       const response = await axios.post(endpointChatGPT, {
         question: _prompt,
-        idSession: sessionId,
+        idSession: uuidv4(),
       });
 
       updateResponse(uniqueId, {

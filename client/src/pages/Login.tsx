@@ -11,11 +11,11 @@ export const sessionId = "sessionId";
 const Login = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (sessionStorage.getItem(access_token)) {
-      navigate("/search");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (sessionStorage.getItem(access_token)) {
+  //     navigate("/search");
+  //   }
+  // }, [navigate]);
 
   return (
     <FormContainer>
@@ -24,7 +24,8 @@ const Login = () => {
           <h2>Code UnderStand</h2>
         </div>
         <div className="btn_login">
-          <GoogleLogin
+          <button onClick={() => navigate("/search")}>Login</button>
+          {/* <GoogleLogin
             onSuccess={(credentialResponse) => {
               const credential: any = credentialResponse.credential;
               var decoded: any = jwt_decode(credential);
@@ -35,7 +36,7 @@ const Login = () => {
             onError={() => {
               console.log("Login Failed");
             }}
-          />
+          /> */}
         </div>
       </div>
     </FormContainer>
