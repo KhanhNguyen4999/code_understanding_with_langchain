@@ -16,11 +16,11 @@ const Home = () => {
   const navigate = useNavigate();
   // const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!sessionStorage.getItem(access_token)) {
-      navigate("/");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!sessionStorage.getItem(access_token)) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
 
   const [responseList, setResponseList] = useState<ResponseInterface[]>([]);
   const [prompt, setPrompt] = useState<string>("");
